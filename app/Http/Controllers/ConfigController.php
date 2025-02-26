@@ -118,18 +118,18 @@ class ConfigController extends Controller
         }
     }
 
-    // public function deleteEquipmentGroup($id)
-    // {
-    //     $eqg = EquipmentGroup::findOrFail($id);
-    //     try {
-    //         $eqg->update([
-    //                 'close' => '0',
-    //                 'status' => '0',
-    //             ]);
-    //             return redirect()->back()->with('success', 'Equipment Group Deleted successfully!');
-    //         } catch (\Exception $e) {
-    //             return redirect()->back()->with('error', 'Failed to Delete Equipment Group.');
-    //         }
-    // }
+    public function deleteEquipmentGroup($id)
+    {
+        $eqg = EquipmentGroup::findOrFail($id);
+        try {
+            $eqg->update([
+                    'close' => '0',
+                    'status' => '0',
+                ]);
+                return redirect()->back()->with('success', 'Equipment Group Deleted successfully!');
+            } catch (\Exception $e) {
+                return redirect()->back()->with('error', 'Failed to Delete Equipment Group.');
+            }
+    }
 
 }

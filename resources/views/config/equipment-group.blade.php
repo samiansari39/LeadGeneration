@@ -199,12 +199,12 @@
                                                             <i data-feather="edit"
                                                                 class="feather-icon text-black me-2"></i>
                                                         </a>
-                                                        {{-- <a href="{{ route('delete-equipment-group', $eqg->eqg_id) }}"
+                                                        <a href="{{ route('delete-equipment-group', $eqg->eqg_id) }}"
                                                             class="edit-icon delete-user-btn">
                                                             <i data-feather="delete"
                                                                 class="feather-icon me-2 text-black"></i>
 
-                                                        </a> --}}
+                                                        </a>
                                                     </td>
                                                 </tr>
                                             @endforeach
