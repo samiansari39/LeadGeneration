@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ConfigController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\SettingsController;
@@ -22,16 +23,26 @@ Route::middleware(['auth'])->group(function () {
         Route::post('update-password', 'updatePassword')->name('settings.updatePassword');
         Route::post('update-email', 'updateEmail')->name('settings.updateEmail');
     });
-        
+
     // Route::controller(RegisteredUserController::class)->group(function () {
     //     Route::get('/register', function () { return view('register'); })->name('register');
     //     Route::post('/register', 'store')->name('register');
     // });
-    
+
     Route::controller(UserController::class)->group(function () {
         Route::get('/all-users', 'index')->name('all-users');
         Route::delete('/users/{id}', 'destroy')->name('users.destroy');
     });
+
+    Route::controller(ConfigController::class)->group(function () {
+        Route::get('/view-hospital', 'viewHospital')->name('view-hospital');
+        route::post('add-hospital','addHospital')->name('add-hospital');
+    });
+
+    /* ------------------------------ config routes ----------------------------- */
+
+
+
 });
 
 Route::controller(LoginController::class)->group(function () {
@@ -43,10 +54,3 @@ Route::controller(RegisteredUserController::class)->group(function () {
     Route::get('/register', function () { return view('register'); })->name('register');
     Route::post('/register', 'store')->name('register');
 });
-
-
-
-
-
-
-

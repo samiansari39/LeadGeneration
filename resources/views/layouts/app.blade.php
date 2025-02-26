@@ -6,6 +6,8 @@
             'profile-setting' => 'User Profile',
             'app-chat' => 'Chat',
             'app-calendar' => 'Calendar',
+            'view-hospital' => 'All Hospitals List',
+
         ];
     @endphp
 
