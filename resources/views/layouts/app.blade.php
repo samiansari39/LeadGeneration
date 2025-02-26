@@ -7,6 +7,8 @@
             'app-chat' => 'Chat',
             'app-calendar' => 'Calendar',
             'view-hospital' => 'All Hospitals List',
+            'view-equipment-group' => 'All Equipment Groups',
+
 
         ];
     @endphp

@@ -35,11 +35,16 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::controller(ConfigController::class)->group(function () {
+        /* ----------------------------- hospital routes ---------------------------- */
         Route::get('/view-hospital', 'viewHospital')->name('view-hospital');
         route::post('add-hospital','addHospital')->name('add-hospital');
         route::post('edit-hospital','editHospital')->name('edit-hospital');
         route::get('delete-hospital/{id}','deleteHospital')->name('delete-hospital');
-
+        /* ------------------------- equipment group routes ------------------------- */
+        Route::get('/view-equipment-group', 'viewEquipmentGroup')->name('view-equipment-group');
+        route::post('add-equipment-group','addEquipmentGroup')->name('add-equipment-group');
+        route::post('edit-equipment-group','editEquipmentGroup')->name('edit-equipment-group');
+        route::get('delete-equipment-group/{id}','deleteEquipmentGroup')->name('delete-equipment-group');
     });
 
     /* ------------------------------ config routes ----------------------------- */

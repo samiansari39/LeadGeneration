@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\EquipmentGroup;
 use App\Models\Hospital;
-use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class ConfigController extends Controller
@@ -71,4 +70,32 @@ class ConfigController extends Controller
         $hos->save();
         return redirect()->back()->with('success', 'Hospital deleted successfully!');
     }
+
+    /* ------------------------ equipment group functions ----------------------- */
+
+    public function viewEquipmentGroup()
+    {
+        return view('config.equipment-group');
+    }
+
+    public function addEquipmentGroup(Request $request)
+    {
+        $validated = $request->validate([
+            'eqg_name' => 'required|string|max:255',
+            'eqg_active' => 'required|in:0,1',
+        ]);
+        $user = Auth::user();
+        try {
+            EquipmentGroup::create([
+                'eqg_name' => $validated['eqg_name'],
+                'eqg_active' => $validated['eqg_active'],
+                'eqg_insertby' => $user->first_name,
+            ]);
+
+            return redirect()->back()->with('success', 'Equipment Group added successfully!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Failed to add Equipment Group.');
+        }
+    }
+
 }

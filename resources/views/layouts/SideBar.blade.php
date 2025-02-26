@@ -19,7 +19,7 @@
             </span></a>
         <ul aria-expanded="false" class="collapse  first-level base-level-line">
             <li class="sidebar-item"><a href="{{ route('view-hospital') }}" class="sidebar-link"><span class="hide-menu"> Hospital </span></a></li>
-            <li class="sidebar-item"><a href="docs-ui-modals.html" class="sidebar-link"><span class="hide-menu"> Euipment Groups </span></a></li>
+            <li class="sidebar-item"><a href="{{ route('view-equipment-group') }}" class="sidebar-link"><span class="hide-menu"> Euipment Groups </span></a></li>
             <li class="sidebar-item"><a href="docs-ui-tabs.html" class="sidebar-link"><span class="hide-menu"> Tabs </span></a></li>
             <li class="sidebar-item"><a href="docs-ui-tooltip-popover.html" class="sidebar-link"><span class="hide-menu"> Equipment </span></a></li>
             <li class="sidebar-item"><a href="docs-ui-notification.html" class="sidebar-link"><span class="hide-menu"> Supply Groups </span></a></li>
