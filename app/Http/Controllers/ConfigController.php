@@ -75,7 +75,8 @@ class ConfigController extends Controller
 
     public function viewEquipmentGroup()
     {
-        return view('config.equipment-group');
+        $equipments = EquipmentGroup::where('status','1')->where('close','1')->get();
+        return view('config.equipment-group',compact('equipments'));
     }
 
     public function addEquipmentGroup(Request $request)
@@ -97,5 +98,38 @@ class ConfigController extends Controller
             return redirect()->back()->with('error', 'Failed to add Equipment Group.');
         }
     }
+
+    public function editEquipmentGroup(Request $request)
+    {
+        $validated = $request->validate([
+            'eqg_name' => 'required|string|max:255',
+            'eqg_active' => 'required|in:0,1',
+        ]);
+        $id = $request->eqg_id;
+        $eqg = EquipmentGroup::findOrFail($id);
+        try {
+        $eqg->update([
+                'eqg_name' => $validated['eqg_name'],
+                'eqg_active' => $validated['eqg_active'],
+            ]);
+            return redirect()->back()->with('success', 'Equipment Group updated successfully!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Failed to update Equipment Group.');
+        }
+    }
+
+    // public function deleteEquipmentGroup($id)
+    // {
+    //     $eqg = EquipmentGroup::findOrFail($id);
+    //     try {
+    //         $eqg->update([
+    //                 'close' => '0',
+    //                 'status' => '0',
+    //             ]);
+    //             return redirect()->back()->with('success', 'Equipment Group Deleted successfully!');
+    //         } catch (\Exception $e) {
+    //             return redirect()->back()->with('error', 'Failed to Delete Equipment Group.');
+    //         }
+    // }
 
 }
