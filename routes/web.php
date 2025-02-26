@@ -37,6 +37,9 @@ Route::middleware(['auth'])->group(function () {
     Route::controller(ConfigController::class)->group(function () {
         Route::get('/view-hospital', 'viewHospital')->name('view-hospital');
         route::post('add-hospital','addHospital')->name('add-hospital');
+        route::post('edit-hospital','editHospital')->name('edit-hospital');
+        route::get('delete-hospital/{id}','deleteHospital')->name('delete-hospital');
+
     });
 
     /* ------------------------------ config routes ----------------------------- */
