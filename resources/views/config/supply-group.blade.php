@@ -112,7 +112,7 @@
                         <div class="col-6 d-flex justify-content-end">
                             <button type="button" class="btn waves-effect waves-light btn-outline-primary"
                                 data-bs-toggle="modal" data-bs-target="#signup-modal">
-                                <i data-feather="plus" class="feather-icon me-2"></i>Add Equipment Group
+                                <i data-feather="plus" class="feather-icon me-2"></i>Add Supply Group
                             </button>
                         </div>
                     </div>
@@ -125,20 +125,20 @@
                                 <div class="modal-body">
                                     <div class="text-center mt-2 mb-4">
                                         <div class="d-flex justify-content-between align-items-center mt-2 mb-4">
-                                            <h4 class="mb-0"><b>Add Equipment Group</b></h4>
+                                            <h4 class="mb-0"><b>Add Supply Group</b></h4>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
                                     </div>
 
-                                    <form method="POST" action="{{ route('add-equipment-group') }}" class="mt-4">
+                                    <form method="POST" action="{{ route('add-supply-group') }}" class="mt-4">
                                         @csrf
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="form-group mb-3">
-                                                    <input type="text" name="eqg_name" id="eqgname"
-                                                        value="{{ old('eqg_name') }}" class="form-control"
-                                                        placeholder="Equipment group name" required>
+                                                    <input type="text" name="spg_name" id="eqgname"
+                                                        value="{{ old('spg_name') }}" class="form-control"
+                                                        placeholder="Supply group name" required>
 
                                                 </div>
                                             </div>
@@ -146,8 +146,8 @@
                                             <div class="col-lg-12">
                                                 <div class="form-group form-check mb-3">
                                                     <label for="active" class="form-check-label">Active</label>
-                                                    <input type="hidden" name="eqg_active" value="0">
-                                                    <input type="checkbox" name="eqg_active" id="active"
+                                                    <input type="hidden" name="spg_active" value="0">
+                                                    <input type="checkbox" name="spg_active" id="active"
                                                         value="1" class="form-check-input"
                                                         {{ old('active') ? 'checked' : '' }}
                                                         style="border: 1px solid black;">
@@ -155,7 +155,7 @@
                                             </div>
                                             <div class="col-lg-12 text-center">
                                                 <button type="submit" class="btn w-100 btn-dark">Add
-                                                    Equipment Group</button>
+                                                    Supply Group</button>
                                             </div>
                                         </div>
                                     </form>
@@ -182,25 +182,25 @@
                                         </thead>
                                         <tbody>
                                             @php $i = 0; @endphp
-                                            @foreach ($equipments as $index => $eqg)
+                                            @foreach ($spg as $index => $item)
                                                 <tr>
                                                     <td>{{ ++$i }}</td>
-                                                    <td>{{ $eqg->eqg_name }}</td>
+                                                    <td>{{ $item->spg_name }}</td>
                                                     <td>
-                                                        @if ($eqg->eqg_active == '1')
+                                                        @if ($item->spg_active == '1')
                                                             Active
                                                         @else
                                                             In Active
                                                         @endif
                                                     </td>
                                                     <td>
-                                                        <a onclick="editEqg({{ json_encode($eqg) }})"
+                                                        <a onclick="editEqg({{ json_encode($item) }})"
                                                             href="javascript:void(0);">
                                                             <i data-feather="edit"
                                                                 class="feather-icon text-black me-2"></i>
                                                         </a>
 
-                                                        <a href="javascript:void(0);" onclick="confirmDelete('{{ route('delete-equipment-group', $eqg->eqg_id) }}')"
+                                                        <a href="javascript:void(0);" onclick="confirmDelete('{{ route('delete-supply-group', $item->spg_id) }}')"
                                                             class="edit-icon delete-user-btn">
                                                             <i data-feather="delete" class="feather-icon me-2 text-black"></i>
                                                          </a>
@@ -221,20 +221,20 @@
                         <div class="modal-content ">
                             <div class="modal-body ">
                                 <div class="d-flex justify-content-between align-items-center mt-2 mb-4">
-                                    <h4 class="mb-0"><b>Edit Equipment Group</b></h4>
+                                    <h4 class="mb-0"><b>Edit Supply Group</b></h4>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
 
-                                <form method="POST" action="{{ route('edit-equipment-group') }}" class="mt-4">
+                                <form method="POST" action="{{ route('edit-supply-group') }}" class="mt-4">
                                     @csrf
                                     <div class="row">
-                                        <input type="hidden" name="eqg_id" id="eqg_id">
+                                        <input type="hidden" name="spg_id" id="spg_id">
                                         <div class="col-lg-12">
                                             <div class="form-group mb-3">
-                                                <input type="text" name="eqg_name" id="edit-eqgname"
+                                                <input type="text" name="spg_name" id="edit-spgname"
                                                     value="{{ old('eqg_name') }}" class="form-control"
-                                                    placeholder="Equipment group name" required>
+                                                    placeholder="Supply group name" required>
 
                                             </div>
                                         </div>
@@ -242,8 +242,8 @@
                                         <div class="col-lg-12">
                                             <div class="form-group form-check mb-3">
                                                 <label for="active" class="form-check-label">Active</label>
-                                                <input type="hidden" name="eqg_active" value="0">
-                                                <input type="checkbox" name="eqg_active" id="edit-eqgactive"
+                                                <input type="hidden" name="spg_active" value="0">
+                                                <input type="checkbox" name="spg_active" id="edit-spgactive"
                                                     value="1" class="form-check-input"
                                                     {{ old('active') ? 'checked' : '' }}
                                                     style="border: 1px solid black;">
@@ -251,7 +251,7 @@
                                         </div>
                                         <div class="col-lg-12 text-center">
                                             <button type="submit" class="btn w-100 btn-dark">Edit
-                                                Equipment Group</button>
+                                                Supply Group</button>
                                         </div>
                                     </div>
                                 </form>
@@ -316,10 +316,10 @@
         });
     </script>
     <script>
-        function editEqg(eqg) {
-            document.getElementById("eqg_id").value = eqg.eqg_id;
-            document.getElementById("edit-eqgname").value = eqg.eqg_name;
-            document.getElementById("edit-eqgactive").checked = eqg.eqg_active == 1;
+        function editEqg(spg) {
+            document.getElementById("spg_id").value = spg.spg_id;
+            document.getElementById("edit-spgname").value = spg.spg_name;
+            document.getElementById("edit-spgactive").checked = spg.spg_active == 1;
             var editModal = new bootstrap.Modal(document.getElementById("editHospital"));
             editModal.show();
         }

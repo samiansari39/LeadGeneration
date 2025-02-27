@@ -20,11 +20,10 @@
         <ul aria-expanded="false" class="collapse  first-level base-level-line">
             <li class="sidebar-item"><a href="{{ route('view-hospital') }}" class="sidebar-link"><span class="hide-menu"> Hospital </span></a></li>
             <li class="sidebar-item"><a href="{{ route('view-equipment-group') }}" class="sidebar-link"><span class="hide-menu"> Euipment Groups </span></a></li>
-            <li class="sidebar-item"><a href="docs-ui-tabs.html" class="sidebar-link"><span class="hide-menu"> Tabs </span></a></li>
-            <li class="sidebar-item"><a href="docs-ui-tooltip-popover.html" class="sidebar-link"><span class="hide-menu"> Equipment </span></a></li>
-            <li class="sidebar-item"><a href="docs-ui-notification.html" class="sidebar-link"><span class="hide-menu"> Supply Groups </span></a></li>
-            <li class="sidebar-item"><a href="docs-ui-progressbar.html" class="sidebar-link"><span class="hide-menu"> Supplies </span></a></li>
-            <li class="sidebar-item"><a href="docs-ui-typography.html" class="sidebar-link"><span class="hide-menu"> Staff </span></a></li>
+            <li class="sidebar-item"><a href="{{ route('view-equipment') }}" class="sidebar-link"><span class="hide-menu"> Equipments </span></a></li>
+            <li class="sidebar-item"><a href="{{ route('view-supply-group') }}" class="sidebar-link"><span class="hide-menu"> Supply Groups </span></a></li>
+            <li class="sidebar-item"><a href="{{ route('view-supplies') }}" class="sidebar-link"><span class="hide-menu"> Supplies </span></a></li>
+            <li class="sidebar-item"><a href="{{ route('view-staff') }}" class="sidebar-link"><span class="hide-menu"> Staff </span></a></li>
             <li class="sidebar-item"><a href="docs-ui-bootstrapui.html" class="sidebar-link"><span class="hide-menu"> Report </span></a></li>
             <li class="sidebar-item"><a href="docs-ui-breadcrumb.html" class="sidebar-link"><span class="hide-menu"> Report Review </span></a></li>
             <li class="sidebar-item"><a href="docs-ui-listmedia.html" class="sidebar-link"><span class="hide-menu"> Procedures </span></a></li>

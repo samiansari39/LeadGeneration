@@ -71,8 +71,8 @@
                                 <ol class="breadcrumb m-0 p-0">
                                     <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"
                                             class="text-muted">Apps</a></li>
-                                    <li class="breadcrumb-item text-muted active" aria-current="page">All Equipment
-                                        Groups</li>
+                                    <li class="breadcrumb-item text-muted active" aria-current="page">All Supply
+                                        </li>
                                 </ol>
                             </nav>
                         </div>
@@ -107,12 +107,12 @@
 
                     <div class="row">
                         <div class="col-6">
-                            <h5><b>All Equipemnt Groups (0)</b></h5>
+                            <h5><b>All Equipemnts (0)</b></h5>
                         </div>
                         <div class="col-6 d-flex justify-content-end">
                             <button type="button" class="btn waves-effect waves-light btn-outline-primary"
                                 data-bs-toggle="modal" data-bs-target="#signup-modal">
-                                <i data-feather="plus" class="feather-icon me-2"></i>Add Equipment Group
+                                <i data-feather="plus" class="feather-icon me-2"></i>Add Supply
                             </button>
                         </div>
                     </div>
@@ -121,33 +121,76 @@
                     <div id="signup-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
-
                                 <div class="modal-body">
                                     <div class="text-center mt-2 mb-4">
                                         <div class="d-flex justify-content-between align-items-center mt-2 mb-4">
-                                            <h4 class="mb-0"><b>Add Equipment Group</b></h4>
+                                            <h4 class="mb-0"><b>Add Supply</b></h4>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
                                     </div>
 
-                                    <form method="POST" action="{{ route('add-equipment-group') }}" class="mt-4">
+                                    <form method="POST" action="{{ route('add-supplies') }}" class="mt-4">
                                         @csrf
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="form-group mb-3">
-                                                    <input type="text" name="eqg_name" id="eqgname"
-                                                        value="{{ old('eqg_name') }}" class="form-control"
-                                                        placeholder="Equipment group name" required>
+                                                    <select name="sp_type" id="" class="form-select">
+                                                        <option value="">Select Supply group</option>
+                                                        @foreach ($spg as $item)
+                                                        <option value="{{ $item->spg_id }}">{{ $item->spg_name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="form-group mb-3">
+                                                    <input type="text" name="sp_manufacturer" class="form-control" id="" placeholder="Manufecturer">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="form-group mb-3">
+                                                    <input type="text" name="sp_name" class="form-control" id="" placeholder="Name">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="form-group mb-3">
+                                                    <input type="text" name="sp_lotno" class="form-control" id="" placeholder="lot number">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="form-group mb-3">
+                                                    <input type="date" name="sp_expdate" class="form-control" value="{{ \Carbon\Carbon::now()->format('Y-m-d') }}" placeholder="">
 
                                                 </div>
                                             </div>
 
                                             <div class="col-lg-12">
+                                                <div class="form-group mb-3">
+                                                    <input type="text" name="sp_billingcode" class="form-control" id="" placeholder="Billing code">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="form-group mb-3">
+                                                    <textarea name="sp_notes" id="" rows="3" placeholder="Add notes" class="form-control">
+                                                    </textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="form-group form-check mb-3">
+                                                    <label for="group" class="form-check-label">Group OR 1</label>
+                                                    <input type="hidden" name="sp_group" value="0">
+                                                    <input type="checkbox" name="sp_group" id="group"
+                                                        value="1" class="form-check-input"
+                                                        {{ old('group') ? 'checked' : '' }}
+                                                        style="border: 1px solid black;">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
                                                 <div class="form-group form-check mb-3">
                                                     <label for="active" class="form-check-label">Active</label>
-                                                    <input type="hidden" name="eqg_active" value="0">
-                                                    <input type="checkbox" name="eqg_active" id="active"
+                                                    <input type="hidden" name="eq_active" value="0">
+                                                    <input type="checkbox" name="eq_active" id="active"
                                                         value="1" class="form-check-input"
                                                         {{ old('active') ? 'checked' : '' }}
                                                         style="border: 1px solid black;">
@@ -155,7 +198,7 @@
                                             </div>
                                             <div class="col-lg-12 text-center">
                                                 <button type="submit" class="btn w-100 btn-dark">Add
-                                                    Equipment Group</button>
+                                                    Supply</button>
                                             </div>
                                         </div>
                                     </form>
@@ -175,35 +218,43 @@
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
+                                                <th>Type</th>
+                                                <th>Manufacturer</th>
                                                 <th>Name</th>
+                                                <th>Lot Number</th>
+                                                <th>Expiration date</th>
                                                 <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @php $i = 0; @endphp
-                                            @foreach ($equipments as $index => $eqg)
+                                            @foreach ($sp as $index => $item)
                                                 <tr>
                                                     <td>{{ ++$i }}</td>
-                                                    <td>{{ $eqg->eqg_name }}</td>
+                                                    <td>{{ $item->SupplyGroup->spg_name }}</td>
+                                                    <td>{{ $item->sp_manufacturer }}</td>
+                                                    <td>{{ $item->sp_name }}</td>
+                                                    <td>{{ $item->sp_lotno }}</td>
+                                                    <td>{{ $item->sp_expdate }}</td>
                                                     <td>
-                                                        @if ($eqg->eqg_active == '1')
+                                                        @if ($item->sp_active == '1')
                                                             Active
                                                         @else
                                                             In Active
                                                         @endif
                                                     </td>
                                                     <td>
-                                                        <a onclick="editEqg({{ json_encode($eqg) }})"
+                                                        <a onclick="editEqg({{ json_encode($item) }})"
                                                             href="javascript:void(0);">
                                                             <i data-feather="edit"
                                                                 class="feather-icon text-black me-2"></i>
                                                         </a>
-
-                                                        <a href="javascript:void(0);" onclick="confirmDelete('{{ route('delete-equipment-group', $eqg->eqg_id) }}')"
+                                                        <a href="javascript:void(0);" onclick="confirmDelete('{{ route('delete-supplies', $item->sp_id) }}')"
                                                             class="edit-icon delete-user-btn">
                                                             <i data-feather="delete" class="feather-icon me-2 text-black"></i>
                                                          </a>
+
 
                                                     </td>
                                                 </tr>
@@ -221,29 +272,73 @@
                         <div class="modal-content ">
                             <div class="modal-body ">
                                 <div class="d-flex justify-content-between align-items-center mt-2 mb-4">
-                                    <h4 class="mb-0"><b>Edit Equipment Group</b></h4>
+                                    <h4 class="mb-0"><b>Edit Supply Group</b></h4>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
 
-                                <form method="POST" action="{{ route('edit-equipment-group') }}" class="mt-4">
+                                <form method="POST" action="{{ route('update-supplies') }}" class="mt-4">
                                     @csrf
+                                    <input type="hidden" name="sp_id" id="sp_id">
                                     <div class="row">
-                                        <input type="hidden" name="eqg_id" id="eqg_id">
                                         <div class="col-lg-12">
                                             <div class="form-group mb-3">
-                                                <input type="text" name="eqg_name" id="edit-eqgname"
-                                                    value="{{ old('eqg_name') }}" class="form-control"
-                                                    placeholder="Equipment group name" required>
+                                                <select name="sp_type" id="edit_type" class="form-select">
+                                                    <option value="">Select Supply group</option>
+                                                    @foreach ($spg as $item)
+                                                    <option value="{{ $item->spg_id }}">{{ $item->spg_name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group mb-3">
+                                                <input type="text" name="sp_manufacturer" class="form-control" id="edit_manufacturer" placeholder="Manufecturer">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group mb-3">
+                                                <input type="text" name="sp_name" class="form-control" id="edit_name" placeholder="Name">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group mb-3">
+                                                <input type="text" name="sp_lotno" class="form-control" id="edit_lotno" placeholder="lot number">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group mb-3">
+                                                <input type="date" name="sp_expdate" class="form-control" value="{{ \Carbon\Carbon::now()->format('Y-m-d') }}" placeholder="" id="sp_expdate">
 
                                             </div>
                                         </div>
 
                                         <div class="col-lg-12">
+                                            <div class="form-group mb-3">
+                                                <input type="text" name="sp_billingcode" class="form-control" id="edit_billing" placeholder="Billing code" >
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group mb-3">
+                                                <textarea name="sp_notes" id="edit_notes" rows="3" placeholder="Add notes" class="form-control">
+                                                </textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
                                             <div class="form-group form-check mb-3">
-                                                <label for="active" class="form-check-label">Active</label>
-                                                <input type="hidden" name="eqg_active" value="0">
-                                                <input type="checkbox" name="eqg_active" id="edit-eqgactive"
+                                                <label for="edit-group" class="form-check-label">Group OR 1</label>
+                                                <input type="hidden" name="sp_group" value="0">
+                                                <input type="checkbox" name="sp_group" id="edit-group"
+                                                    value="1" class="form-check-input"
+                                                    {{ old('group') ? 'checked' : '' }}
+                                                    style="border: 1px solid black;">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group form-check mb-3">
+                                                <label for="edit-active" class="form-check-label">Active</label>
+                                                <input type="hidden" name="eq_active" value="0">
+                                                <input type="checkbox" name="eq_active" id="edit-active"
                                                     value="1" class="form-check-input"
                                                     {{ old('active') ? 'checked' : '' }}
                                                     style="border: 1px solid black;">
@@ -251,7 +346,7 @@
                                         </div>
                                         <div class="col-lg-12 text-center">
                                             <button type="submit" class="btn w-100 btn-dark">Edit
-                                                Equipment Group</button>
+                                                Supply</button>
                                         </div>
                                     </div>
                                 </form>
@@ -316,15 +411,22 @@
         });
     </script>
     <script>
-        function editEqg(eqg) {
-            document.getElementById("eqg_id").value = eqg.eqg_id;
-            document.getElementById("edit-eqgname").value = eqg.eqg_name;
-            document.getElementById("edit-eqgactive").checked = eqg.eqg_active == 1;
+        function editEqg(sp) {
+            document.getElementById("sp_id").value = sp.sp_id;
+            document.getElementById("edit_type").value = sp.sp_type;
+            document.getElementById("edit_manufacturer").value = sp.sp_manufacturer;
+            document.getElementById("edit_name").value = sp.sp_name;
+            document.getElementById("edit_lotno").value = sp.sp_lotno;
+            document.getElementById("edit_billing").value = sp.sp_billingcode;
+            document.getElementById("edit_notes").value = sp.sp_notes;
+            document.getElementById("edit-active").checked = sp.sp_active == 1;
+            document.getElementById("edit-group").checked = sp.sp_groups == 1;
+
             var editModal = new bootstrap.Modal(document.getElementById("editHospital"));
             editModal.show();
         }
     </script>
-     <script>
+    <script>
         function confirmDelete(url) {
             Swal.fire({
                 title: "Are you sure?",
@@ -341,7 +443,6 @@
             });
         }
         </script>
-
 </body>
 
 </html>

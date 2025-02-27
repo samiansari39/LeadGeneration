@@ -225,12 +225,12 @@
                                                             <i data-feather="edit"
                                                                 class="feather-icon text-black me-2"></i>
                                                         </a>
-                                                        <a href="{{ route('delete-hospital', $hos->hos_id) }}"
-                                                            class="edit-icon delete-user-btn">
-                                                            <i data-feather="delete"
-                                                                class="feather-icon me-2 text-black"></i>
 
-                                                        </a>
+                                                        <a href="javascript:void(0);" onclick="confirmDelete('{{ route('delete-hospital', $hos->hos_id) }}')"
+                                                            class="edit-icon delete-user-btn">
+                                                            <i data-feather="delete" class="feather-icon me-2 text-black"></i>
+                                                         </a>
+
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -347,6 +347,7 @@
     <script src="../dist/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
     <script src="../dist/js/custom.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Include jQuery and DataTables CDN -->
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
@@ -379,6 +380,23 @@
             editModal.show();
         }
     </script>
+     <script>
+        function confirmDelete(url) {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#3085d6",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = url; // Redirect to delete route
+                }
+            });
+        }
+        </script>
 
 </body>
 

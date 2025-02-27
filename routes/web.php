@@ -45,7 +45,31 @@ Route::middleware(['auth'])->group(function () {
         route::post('add-equipment-group','addEquipmentGroup')->name('add-equipment-group');
         route::post('edit-equipment-group','editEquipmentGroup')->name('edit-equipment-group');
         route::get('delete-equipment-group/{id}','deleteEquipmentGroup')->name('delete-equipment-group');
+        /* ---------------------------- equipment routes ---------------------------- */
+        Route::get('/view-equipment', 'viewEquipment')->name('view-equipment');
+        route::post('/add-equipment','addEquipment')->name('add-equipment');
+        route::post('/edit-equipment','editEquipment')->name('edit-equipment');
+        route::get('/delete-equipment/{id}','deleteEquipment')->name('delete-equipment');
+        /* --------------------------- supply group routes -------------------------- */
+        Route::get('/view-supply-group', 'viewSupplyGroup')->name('view-supply-group');
+        route::post('/add-supply-group','addSupplyGroup')->name('add-supply-group');
+        route::post('/edit-supply-group','editSupplyGroup')->name('edit-supply-group');
+        route::get('/delete-supply-group/{id}','deleteSupplyGroup')->name('delete-supply-group');
+        /* ----------------------------- supplies routes ---------------------------- */
+        Route::get('/view-supplies', 'viewSupplies')->name('view-supplies');
+        route::post('/add-supplies','addSupplies')->name('add-supplies');
+
+        // route::post('/update-supplies','editSupplies')->name('update-supplies');
+        route::get('/delete-supplies/{id}','deleteSupplies')->name('delete-supplies');
+        /* ------------------------------ staff routes ------------------------------ */
+        Route::get('/view-staff', 'viewStaff')->name('view-staff');
+        route::post('/add-staff','addStaff')->name('add-staff');
+        route::post('/edit-staff','editStaff')->name('edit-staff');
+        route::get('/delete-staff/{id}','deleteStaff')->name('delete-staff');
     });
+
+    Route::post('/update-supply', [ConfigController::class, 'editSupplies'])->name('update-supply');
+    Route::post('/update-supplies', [ConfigController::class, 'editSupplies'])->name('update-supplies');
 
     /* ------------------------------ config routes ----------------------------- */
 
