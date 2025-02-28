@@ -12,9 +12,7 @@
             'view-supply-group' => 'All Supply groups',
             'view-supplies' => 'All Supplies',
             'view-staff' => 'All Staff Memebers',
-
-
-
+            'view-report' => 'All Reports',
 
         ];
     @endphp

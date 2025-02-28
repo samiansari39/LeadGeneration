@@ -59,17 +59,15 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/view-supplies', 'viewSupplies')->name('view-supplies');
         route::post('/add-supplies','addSupplies')->name('add-supplies');
 
-        // route::post('/update-supplies','editSupplies')->name('update-supplies');
+        route::post('/update-supplies','editSupplies')->name('update-supplies');
         route::get('/delete-supplies/{id}','deleteSupplies')->name('delete-supplies');
         /* ------------------------------ staff routes ------------------------------ */
         Route::get('/view-staff', 'viewStaff')->name('view-staff');
         route::post('/add-staff','addStaff')->name('add-staff');
         route::post('/edit-staff','editStaff')->name('edit-staff');
         route::get('/delete-staff/{id}','deleteStaff')->name('delete-staff');
+      
     });
-
-    Route::post('/update-supply', [ConfigController::class, 'editSupplies'])->name('update-supply');
-    Route::post('/update-supplies', [ConfigController::class, 'editSupplies'])->name('update-supplies');
 
     /* ------------------------------ config routes ----------------------------- */
 

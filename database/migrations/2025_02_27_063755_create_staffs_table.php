@@ -15,9 +15,9 @@ return new class extends Migration
         Schema::create('staffs', function (Blueprint $table) {
             $table->id('st_id');
             $table->string('st_name', 100)->collation('utf8mb4_general_ci');
-            $table->string('st_first_name', 100)->collation('utf8mb4_general_ci');
-            $table->string('st_middle_name', 100)->nullable()->collation('utf8mb4_general_ci');
-            $table->string('st_last_name', 100)->collation('utf8mb4_general_ci');
+            $table->string('st_first_name', 50)->collation('utf8mb4_general_ci');
+            $table->string('st_middle_name', 50)->nullable()->collation('utf8mb4_general_ci');
+            $table->string('st_last_name', 50)->collation('utf8mb4_general_ci');
             $table->string('st_phone', 20)->collation('utf8mb4_general_ci');
             $table->enum('anesthesiologist',['0', '1'])->default('0')->collation('utf8mb4_general_ci');
             $table->enum('cardiologist',['0', '1'])->default('0')->collation('utf8mb4_general_ci');

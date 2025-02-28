@@ -475,4 +475,6 @@ class ConfigController extends Controller
         return redirect()->back()->with('success', 'Staff deleted successfully!');
     }
 
+   
+
 }

@@ -24,7 +24,7 @@
             <li class="sidebar-item"><a href="{{ route('view-supply-group') }}" class="sidebar-link"><span class="hide-menu"> Supply Groups </span></a></li>
             <li class="sidebar-item"><a href="{{ route('view-supplies') }}" class="sidebar-link"><span class="hide-menu"> Supplies </span></a></li>
             <li class="sidebar-item"><a href="{{ route('view-staff') }}" class="sidebar-link"><span class="hide-menu"> Staff </span></a></li>
-            <li class="sidebar-item"><a href="docs-ui-bootstrapui.html" class="sidebar-link"><span class="hide-menu"> Report </span></a></li>
+            <li class="sidebar-item"><a href="#" class="sidebar-link"><span class="hide-menu"> Report </span></a></li>
             <li class="sidebar-item"><a href="docs-ui-breadcrumb.html" class="sidebar-link"><span class="hide-menu"> Report Review </span></a></li>
             <li class="sidebar-item"><a href="docs-ui-listmedia.html" class="sidebar-link"><span class="hide-menu"> Procedures </span></a></li>
             <li class="sidebar-item"><a href="docs-ui-grid.html" class="sidebar-link"><span class="hide-menu"> Grid </span></a></li>
